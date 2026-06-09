@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Quill Review — Student Research in Finance & Economics</title>
+<meta name="description" content="A peer journal for undergraduate and graduate research in finance and economics. Submit your paper for review." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf8f3;
+    --paper-2: #f4f0e6;
+    --accent: #6b2737;
+    --accent-2: #c9a96e;
+    --muted: #6b6b6b;
+    --border: #d9d3c4;
+    --success: #2d5d3a;
+    --error: #8a2b2b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+  /* Top bar */
+  header.nav {
+    border-bottom: 1px solid var(--border);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px 64px;
+    text-align: center;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 600;
+    margin: 0 0 20px;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero p.lede {
+    max-width: 640px;
+    margin: 0 auto 36px;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s ease, background 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: #58202d; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn:active { transform: translateY(1px); }
+
+  /* Stats strip */
+  .strip {
+    background: var(--paper-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .strip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    text-align: center;
+  }
+  .strip h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    margin: 0 0 4px;
+    color: var(--accent);
+  }
+  .strip p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* Sections */
+  section { max-width: 1100px; margin: 0 auto; padding: 72px 24px; }
+  .section-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-title h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .section-title p {
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* Topics grid */
+  .topics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .topic {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .topic:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .topic .icon {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--paper-2);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .topic h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    margin: 0 0 8px;
+  }
+  .topic p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  /* Form */
+  .form-wrap {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 44px;
+    max-width: 760px;
+    margin: 0 auto;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .field { display: flex; flex-direction: column; }
+  .field.full { grid-column: 1 / -1; }
+  label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  label .req { color: var(--accent); }
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(107, 39, 55, 0.12);
+  }
+  textarea { resize: vertical; min-height: 130px; }
+  .file-field {
+    border: 2px dashed var(--border);
+    border-radius: 6px;
+    padding: 22px;
+    text-align: center;
+    background: var(--paper);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .file-field:hover { border-color: var(--accent); background: white; }
+  .file-field input[type="file"] {
+    display: block;
+    margin: 8px auto 0;
+    font-size: 0.9rem;
+  }
+  .file-field .hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .checkbox-row input { margin-top: 4px; }
+  .checkbox-row label { font-weight: 400; font-size: 0.9rem; color: var(--muted); }
+  .submit-row {
+    margin-top: 28px;
+    text-align: center;
+  }
+  .submit-row button { padding: 16px 44px; font-size: 1rem; }
+  .form-note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  /* FAQ */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 22px 0;
+  }
+  .faq-item h4 {
+    margin: 0 0 6px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+  }
+  .faq-item p { margin: 0; color: var(--muted); }
+
+  /* Footer */
+  footer {
+    background: var(--ink);
+    color: #cdc7b4;
+    padding: 48px 24px 28px;
+    margin-top: 60px;
+  }
+  .foot-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  footer .logo { color: white; }
+  footer .logo span { color: var(--accent-2); }
+  footer p { margin: 6px 0; font-size: 0.9rem; }
+  .copyright {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.82rem;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-wrap { padding: 28px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 56px 20px 40px; }
+    section { padding: 56px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">The Quill <span>Review</span></a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#topics">Topics</a>
+      <a href="#submit">Submit</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Student Research Journal</div>
+  <h1>Rigorous student research in <em>finance &amp; economics</em>.</h1>
+  <p class="lede">A peer-reviewed home for undergraduate and graduate work — from empirical asset-pricing studies to macroeconomic theory and behavioral finance. Submit your paper and join a growing community of student scholars.</p>
+  <div class="cta-row">
+    <a href="#submit" class="btn btn-primary">Submit your paper</a>
+    <a href="#about" class="btn btn-ghost">Learn more</a>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div><h3>2</h3><p>Disciplines covered</p></div>
+    <div><h3>Free</h3><p>Submission &amp; review</p></div>
+    <div><h3>4-6w</h3><p>Avg. review window</p></div>
+    <div><h3>Open</h3><p>Year-round intake</p></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-title">
+    <h2>About the journal</h2>
+    <p>We accept original work from current students worldwide — empirical, theoretical, or applied — that contributes new thinking to finance or economics.</p>
+  </div>
+  <div class="topics" id="topics">
+    <div class="topic">
+      <div class="icon">F</div>
+      <h4>Corporate Finance</h4>
+      <p>Capital structure, M&amp;A, governance, dividend policy, IPOs and private markets.</p>
+    </div>
+    <div class="topic">
+      <div class="icon">A</div>
+      <h4>Asset Pricing</h4>
+      <p>Factor models, market microstructure, derivatives, fixed income, and crypto markets.</p>
+    </div>
+    <div class="topic">
+      <div class="icon">M</div>
+      <h4>Macroeconomics</h4>
+      <p>Monetary &amp; fiscal policy, growth, inflation, labor markets, and central banking.</p>
+    </div>
+    <div class="topic">
+      <div class="icon">B</div>
+      <h4>Behavioral Economics</h4>
+      <p>Decision-making under uncertainty, market anomalies, and experimental research.</p>
+    </div>
+    <div class="topic">
+      <div class="icon">D</div>
+      <h4>Development &amp; Trade</h4>
+      <p>International trade, emerging markets, poverty, inequality, and policy outcomes.</p>
+    </div>
+    <div class="topic">
+      <div class="icon">E</div>
+      <h4>Econometrics &amp; Data</h4>
+      <p>Applied methods, causal inference, time-series analysis, machine learning for econ.</p>
+    </div>
+  </div>
+</section>
+
+<section id="submit" style="background: var(--paper-2); max-width: none; padding-left: 0; padding-right: 0;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+    <div class="section-title">
+      <h2>Submit your paper</h2>
+      <p>Fill out the form below. You'll receive a confirmation email and our editorial board will get back to you within 4–6 weeks.</p>
+    </div>
+
+    <div class="form-wrap">
+      <form
+        action="https://formsubmit.co/paruchuriarjun1@gmail.com"
+        method="POST"
+        enctype="multipart/form-data"
+        id="submission-form"
+      >
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_subject" value="New Research Paper Submission — The Quill Review">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_autoresponse" value="Thank you for submitting your research paper to The Quill Review. Our editorial board will review your work and respond within 4–6 weeks. — The Quill Review Team">
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="fullName">Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" name="Full Name" required placeholder="e.g., Jane Patel">
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="Email" required placeholder="jane@university.edu">
+          </div>
+
+          <div class="field">
+            <label for="institution">University / Institution <span class="req">*</span></label>
+            <input type="text" id="institution" name="Institution" required placeholder="e.g., University of Chicago">
+          </div>
+
+          <div class="field">
+            <label for="level">Academic Level <span class="req">*</span></label>
+            <select id="level" name="Academic Level" required>
+              <option value="">Select your level…</option>
+              <option>Undergraduate — Freshman</option>
+              <option>Undergraduate — Sophomore</option>
+              <option>Undergraduate — Junior</option>
+              <option>Undergraduate — Senior</option>
+              <option>Master's Student</option>
+              <option>PhD Candidate</option>
+              <option>Recent Graduate (within 1 year)</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="title">Paper Title <span class="req">*</span></label>
+            <input type="text" id="title" name="Paper Title" required placeholder="e.g., Liquidity Premia in Emerging-Market Sovereign Debt">
+          </div>
+
+          <div class="field">
+            <label for="category">Category <span class="req">*</span></label>
+            <select id="category" name="Category" required>
+              <option value="">Select a category…</option>
+              <option>Finance</option>
+              <option>Economics</option>
+              <option>Financial Economics (both)</option>
+              <option>Other / Interdisciplinary</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="subfield">Subfield</label>
+            <input type="text" id="subfield" name="Subfield" placeholder="e.g., Asset Pricing, Macro, Behavioral">
+          </div>
+
+          <div class="field full">
+            <label for="coauthors">Co-authors (if any)</label>
+            <input type="text" id="coauthors" name="Co-authors" placeholder="Name(s) and affiliation(s), comma separated">
+          </div>
+
+          <div class="field full">
+            <label for="abstract">Abstract <span class="req">*</span></label>
+            <textarea id="abstract" name="Abstract" required maxlength="2000" placeholder="A 150–300 word summary describing your research question, methodology, and key findings."></textarea>
+          </div>
+
+          <div class="field full">
+            <label for="keywords">Keywords</label>
+            <input type="text" id="keywords" name="Keywords" placeholder="e.g., monetary policy, yield curve, term premium">
+          </div>
+
+          <div class="field full">
+            <label>Paper File (PDF) <span class="req">*</span></label>
+            <div class="file-field">
+              <div class="hint">Upload your paper as a PDF — max 10 MB.</div>
+              <input type="file" id="paperFile" name="Paper File" accept=".pdf" required>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="notes">Note to the Editors (optional)</label>
+            <textarea id="notes" name="Note to Editors" placeholder="Anything you'd like the editors to know — funding disclosures, prior submissions, conflicts of interest, etc."></textarea>
+          </div>
+
+          <div class="field full">
+            <div class="checkbox-row">
+              <input type="checkbox" id="original" name="Original Work" value="Yes" required>
+              <label for="original">I confirm this work is original, has not been published elsewhere, and that I have the right to submit it.</label>
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="review" name="Review Consent" value="Yes" required>
+              <label for="review">I understand my paper will be reviewed by The Quill Review's editorial board and consent to receive editorial feedback by email.</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Submit Paper</button>
+        </div>
+        <p class="form-note">By submitting, you'll receive an automatic confirmation. Editorial decisions follow in 4–6 weeks.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-title">
+    <h2>Frequently asked</h2>
+    <p>Quick answers to common questions about the submission process.</p>
+  </div>
+  <div style="max-width: 760px; margin: 0 auto;">
+    <div class="faq-item">
+      <h4>Who can submit?</h4>
+      <p>Any current student — undergraduate or graduate — at any accredited institution. Recent graduates within one year of completion are also welcome.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is there a submission fee?</h4>
+      <p>No. Submission and editorial review are entirely free.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What format should my paper be in?</h4>
+      <p>PDF, ideally typeset in LaTeX or a polished Word export. Most accepted papers are 15–40 pages including references and appendices.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I submit work co-authored with a faculty advisor?</h4>
+      <p>Yes, provided a student is the first author and the work was student-led. List all co-authors and affiliations in the form.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What happens after I submit?</h4>
+      <p>You'll receive an automatic confirmation email. The editorial team will review your paper and respond within 4–6 weeks with one of: accept, revise &amp; resubmit, or decline with feedback.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <a href="#" class="logo">The Quill <span>Review</span></a>
+      <p>Student research in finance &amp; economics.</p>
+    </div>
+    <div>
+      <p><strong>Editorial inquiries</strong></p>
+      <p>paruchuriarjun1@gmail.com</p>
+    </div>
+    <div>
+      <p><strong>Quick links</strong></p>
+      <p><a href="#submit" style="color: var(--accent-2); text-decoration: none;">Submit a paper</a></p>
+      <p><a href="#faq" style="color: var(--accent-2); text-decoration: none;">FAQ</a></p>
+    </div>
+  </div>
+  <div class="copyright">© <span id="year"></span> The Quill Review. All submissions remain the intellectual property of their authors.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Light client-side guardrails for the file input
+  const fileInput = document.getElementById('paperFile');
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    if (f.size > 10 * 1024 * 1024) {
+      alert('That file is over 10 MB. Please compress your PDF and try again.');
+      fileInput.value = '';
+    }
+  });
+</script>
+
+</body>
+</html>
