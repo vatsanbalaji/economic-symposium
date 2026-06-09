@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Econoscope — Student Research Journal</title>
-<meta name="description" content="A high school research journal for students exploring economics and finance. Submit your paper today.">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Quill Review — Student Research in Finance & Economics</title>
+<meta name="description" content="A peer journal for undergraduate and graduate research in finance and economics. Submit your paper for review." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1a1a2e;
@@ -20,24 +20,24 @@
     --success: #2d5d3a;
     --error: #8a2b2b;
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: var(--paper);
     color: var(--ink);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
+  .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
 
-  /* ── NAV ── */
+  /* Top bar */
   header.nav {
     border-bottom: 1px solid var(--border);
-    background: rgba(250,248,243,0.92);
+    background: var(--paper);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 10;
     backdrop-filter: blur(6px);
   }
   .nav-inner {
@@ -52,7 +52,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     color: var(--ink);
     text-decoration: none;
   }
@@ -63,38 +63,40 @@
     text-decoration: none;
     font-size: 0.92rem;
     font-weight: 500;
-    transition: color 0.15s;
   }
   .nav-links a:hover { color: var(--accent); }
 
-  /* ── HERO ── */
+  /* Hero */
   .hero {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 88px 24px 72px;
+    padding: 80px 24px 64px;
     text-align: center;
   }
   .eyebrow {
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 0.74rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-size: clamp(2.4rem, 5vw, 4rem);
     font-weight: 600;
-    line-height: 1.08;
+    margin: 0 0 20px;
+    line-height: 1.1;
     color: var(--ink);
-    margin-bottom: 22px;
   }
-  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
   .hero p.lede {
-    max-width: 620px;
-    margin: 0 auto 40px;
-    font-size: 1.08rem;
+    max-width: 640px;
+    margin: 0 auto 36px;
+    font-size: 1.1rem;
     color: var(--muted);
   }
   .cta-row {
@@ -105,105 +107,92 @@
   }
   .btn {
     display: inline-block;
-    padding: 14px 30px;
+    padding: 14px 28px;
     border-radius: 4px;
     font-weight: 600;
-    font-size: 0.94rem;
+    font-size: 0.95rem;
     text-decoration: none;
     cursor: pointer;
     border: none;
-    transition: transform 0.1s, background 0.2s;
-    font-family: 'Inter', sans-serif;
+    transition: transform 0.1s ease, background 0.2s ease;
   }
-  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
   .btn-primary:hover { background: #58202d; }
-  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
   .btn-ghost:hover { background: var(--ink); color: var(--paper); }
   .btn:active { transform: translateY(1px); }
 
-  /* ── STATS STRIP ── */
-  .strip { background: var(--paper-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  /* Stats strip */
+  .strip {
+    background: var(--paper-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
   .strip-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 36px 24px;
+    padding: 32px 24px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 24px;
     text-align: center;
   }
   .strip h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
+    margin: 0 0 4px;
     color: var(--accent);
-    margin-bottom: 4px;
-    line-height: 1;
   }
   .strip p {
-    font-size: 0.8rem;
+    margin: 0;
+    font-size: 0.85rem;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
 
-  /* ── SECTIONS ── */
-  section { max-width: 1100px; margin: 0 auto; padding: 80px 24px; }
-  .section-title { text-align: center; margin-bottom: 52px; }
+  /* Sections */
+  section { max-width: 1100px; margin: 0 auto; padding: 72px 24px; }
+  .section-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
   .section-title h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: 2.4rem;
     font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 14px;
+    margin: 0 0 12px;
   }
-  .section-title p { color: var(--muted); max-width: 580px; margin: 0 auto; font-size: 1rem; }
+  .section-title p {
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto;
+  }
 
-  /* ── HOW IT WORKS ── */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    margin-top: 8px;
-  }
-  .step {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 32px 28px;
-    position: relative;
-  }
-  .step-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--accent);
-    opacity: 0.18;
-    line-height: 1;
-    margin-bottom: 12px;
-  }
-  .step h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--ink);
-  }
-  .step p { font-size: 0.92rem; color: var(--muted); }
-
-  /* ── TOPICS ── */
-  .topics-grid {
+  /* Topics grid */
+  .topics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 18px;
+    gap: 20px;
   }
   .topic {
     background: white;
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 28px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .topic:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .topic:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
   .topic .icon {
     width: 38px; height: 38px;
     border-radius: 50%;
@@ -217,181 +206,84 @@
     font-weight: 700;
     font-size: 1.2rem;
   }
-  .topic h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 8px; color: var(--ink); }
-  .topic p { font-size: 0.9rem; color: var(--muted); }
-
-  /* ── FORM SECTION ── */
-  .form-bg { background: var(--paper-2); max-width: none; padding: 0; }
-  .form-bg-inner { max-width: 1100px; margin: 0 auto; padding: 80px 24px; }
-
-  .form-wrap {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 48px;
-    max-width: 780px;
-    margin: 0 auto;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+  .topic h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    margin: 0 0 8px;
   }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .field { display: flex; flex-direction: column; gap: 6px; }
-  .field.full { grid-column: 1 / -1; }
-
-  label {
-    font-size: 0.82rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-  }
-  .req { color: var(--accent); }
-
-  input[type="text"],
-  input[type="email"],
-  select,
-  textarea {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    color: var(--ink);
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 11px 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-    -webkit-appearance: none;
-  }
-  input::placeholder, textarea::placeholder { color: #aaa; }
-  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-  textarea { resize: vertical; min-height: 110px; }
-
-  /* File upload */
-  .file-area {
-    border: 1.5px dashed var(--border);
-    border-radius: 4px;
-    padding: 32px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-    position: relative;
-  }
-  .file-area:hover, .file-area.drag { border-color: var(--accent); background: #fdf9f5; }
-  .file-area input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer;
-    width: 100%; height: 100%; border: none; padding: 0;
-  }
-  .file-icon { font-size: 28px; margin-bottom: 10px; }
-  .file-text { font-size: 0.92rem; color: var(--muted); }
-  .file-text strong { color: var(--accent); }
-  .file-hint { font-size: 0.78rem; color: #bbb; margin-top: 6px; }
-  .file-chosen { font-size: 0.85rem; color: var(--accent-2); margin-top: 10px; font-weight: 500; display: none; }
-
-  /* Checkbox */
-  .check-row { display: flex; align-items: flex-start; gap: 10px; }
-  .check-row input[type="checkbox"] {
-    width: 16px; height: 16px; min-width: 16px;
-    margin-top: 2px; accent-color: var(--accent);
-    border: 1px solid var(--border); cursor: pointer;
-    padding: 0;
-  }
-  .check-row label {
-    font-size: 0.88rem;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
+  .topic p {
+    margin: 0;
     color: var(--muted);
-    cursor: pointer;
-    line-height: 1.55;
+    font-size: 0.92rem;
   }
 
-  .submit-row { margin-top: 28px; display: flex; justify-content: flex-end; }
-  .form-note { font-size: 0.82rem; color: var(--muted); margin-top: 14px; text-align: center; }
+  /* Google Form embed */
+  .gform-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+  }
+  .gform-wrap iframe {
+    display: block;
+    width: 100%;
+    border: none;
+  }
 
-  /* ── FAQ ── */
-  .faq-list { max-width: 720px; margin: 0 auto; }
+  /* FAQ */
   .faq-item {
-    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     padding: 22px 0;
   }
-  .faq-item:last-child { border-bottom: 1px solid var(--border); }
-  .faq-q {
+  .faq-item h4 {
+    margin: 0 0 6px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    user-select: none;
-    color: var(--ink);
-  }
-  .faq-q::after {
-    content: '+';
-    font-family: 'Inter', sans-serif;
     font-size: 1.3rem;
-    font-weight: 300;
-    color: var(--accent-2);
-    flex-shrink: 0;
-    transition: transform 0.2s;
   }
-  .faq-item.open .faq-q::after { transform: rotate(45deg); }
-  .faq-a {
-    font-size: 0.95rem;
-    color: var(--muted);
-    line-height: 1.7;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-  }
-  .faq-item.open .faq-a { max-height: 260px; padding-top: 14px; }
+  .faq-item p { margin: 0; color: var(--muted); }
 
-  /* ── FOOTER ── */
+  /* Footer */
   footer {
     background: var(--ink);
-    color: rgba(255,255,255,0.55);
-    padding: 52px 24px 28px;
+    color: #cdc7b4;
+    padding: 48px 24px 28px;
+    margin-top: 60px;
   }
   .foot-inner {
     max-width: 1100px;
-    margin: 0 auto 36px;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-  }
-  footer .logo { color: var(--paper); font-size: 1.4rem; display: inline-block; margin-bottom: 10px; }
-  footer .logo span { color: var(--accent-2); }
-  footer p { font-size: 0.88rem; line-height: 1.7; }
-  footer strong { color: rgba(255,255,255,0.8); }
-  footer a { color: var(--accent-2); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-  .copyright {
-    max-width: 1100px;
     margin: 0 auto;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  footer .logo { color: white; }
+  footer .logo span { color: var(--accent-2); }
+  footer p { margin: 6px 0; font-size: 0.9rem; }
+  .copyright {
     text-align: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.82rem;
+    opacity: 0.7;
   }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .nav-links { display: none; }
-    .form-wrap { padding: 28px 20px; }
-    .form-grid { grid-template-columns: 1fr; }
-    .field.full { grid-column: 1; }
-    .foot-inner { grid-template-columns: 1fr; gap: 24px; }
-    .steps { grid-template-columns: 1fr; }
+    .hero { padding: 56px 20px 40px; }
+    section { padding: 56px 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Nav -->
 <header class="nav">
   <div class="nav-inner">
-    <a href="#" class="logo">Econo<span>scope</span></a>
+    <a href="#" class="logo">The Quill <span>Review</span></a>
     <nav class="nav-links">
       <a href="#about">About</a>
       <a href="#topics">Topics</a>
@@ -401,362 +293,135 @@
   </div>
 </header>
 
-<!-- Hero -->
-<div class="hero">
-  <p class="eyebrow">High School Research Journal · Economics &amp; Finance</p>
-  <h1>Your ideas belong<br><em>in the conversation.</em></h1>
-  <p class="lede">Econoscope is a student research journal dedicated to high schoolers exploring economics, finance, and everything in between. Share your curiosity with a wider audience.</p>
+<section class="hero">
+  <div class="eyebrow">Student Research Journal</div>
+  <h1>Rigorous student research in <em>finance &amp; economics</em>.</h1>
+  <p class="lede">A peer-reviewed home for undergraduate and graduate work — from empirical asset-pricing studies to macroeconomic theory and behavioral finance. Submit your paper and join a growing community of student scholars.</p>
   <div class="cta-row">
-    <a href="#submit" class="btn btn-primary">Submit Your Paper</a>
-    <a href="#topics" class="btn btn-ghost">Explore Topics</a>
-  </div>
-</div>
-
-<!-- Stats -->
-<div class="strip">
-  <div class="strip-inner">
-    <div><h3>12+</h3><p>Topic areas</p></div>
-    <div><h3>Free</h3><p>Submission &amp; review</p></div>
-    <div><h3>3–4w</h3><p>Avg. review window</p></div>
-    <div><h3>Open</h3><p>Year-round intake</p></div>
-    <div><h3>All</h3><p>Grade levels welcome</p></div>
-  </div>
-</div>
-
-<!-- About / How It Works -->
-<section id="about">
-  <div class="section-title">
-    <h2>How it works</h2>
-    <p>Getting your research in front of readers is simpler than you think. Here's the process from start to finish.</p>
-  </div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h4>Write your paper</h4>
-      <p>Pick a topic you're curious about, form a research question, gather sources, and write up your findings. Any length works — from short policy briefs to full papers.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h4>Submit the form</h4>
-      <p>Fill out our submission form below with your paper details, a brief abstract, and your file. The whole process takes under five minutes.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h4>Editorial review</h4>
-      <p>Our editorial team reads every submission for originality, clarity, and intellectual merit. We respond within 3–4 weeks with a decision and feedback.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h4>Get published</h4>
-      <p>Accepted papers are featured in the Econoscope journal and shared with our growing readership of students, educators, and enthusiasts.</p>
-    </div>
+    <a href="#submit" class="btn btn-primary">Submit your paper</a>
+    <a href="#about" class="btn btn-ghost">Learn more</a>
   </div>
 </section>
 
-<!-- Topics -->
-<section id="topics" style="background: var(--paper-2); max-width: none; padding: 0;">
-<div style="max-width: 1100px; margin: 0 auto; padding: 80px 24px;">
-  <div class="section-title">
-    <h2>Broad enough for every curiosity</h2>
-    <p>We accept papers across a wide range of economic and financial topics — if you can frame it through an economic lens, it likely has a home here.</p>
+<div class="strip">
+  <div class="strip-inner">
+    <div><h3>2</h3><p>Disciplines covered</p></div>
+    <div><h3>Free</h3><p>Submission &amp; review</p></div>
+    <div><h3>4-6w</h3><p>Avg. review window</p></div>
+    <div><h3>Open</h3><p>Year-round intake</p></div>
   </div>
-  <div class="topics-grid">
+</div>
+
+<section id="about">
+  <div class="section-title">
+    <h2>About the journal</h2>
+    <p>We accept original work from current students worldwide — empirical, theoretical, or applied — that contributes new thinking to finance or economics.</p>
+  </div>
+  <div class="topics" id="topics">
     <div class="topic">
-      <div class="icon">$</div>
-      <h4>Personal Finance</h4>
-      <p>Budgeting, investing, credit, student loans, financial literacy, and saving habits.</p>
+      <div class="icon">F</div>
+      <h4>Corporate Finance</h4>
+      <p>Capital structure, M&amp;A, governance, dividend policy, IPOs and private markets.</p>
+    </div>
+    <div class="topic">
+      <div class="icon">A</div>
+      <h4>Asset Pricing</h4>
+      <p>Factor models, market microstructure, derivatives, fixed income, and crypto markets.</p>
     </div>
     <div class="topic">
       <div class="icon">M</div>
       <h4>Macroeconomics</h4>
-      <p>GDP, inflation, unemployment, monetary &amp; fiscal policy, recessions, and central banking.</p>
-    </div>
-    <div class="topic">
-      <div class="icon">μ</div>
-      <h4>Microeconomics</h4>
-      <p>Supply &amp; demand, market structures, pricing, consumer behavior, and firm theory.</p>
-    </div>
-    <div class="topic">
-      <div class="icon">G</div>
-      <h4>Global Trade</h4>
-      <p>Tariffs, trade agreements, globalization, comparative advantage, and supply chains.</p>
-    </div>
-    <div class="topic">
-      <div class="icon">H</div>
-      <h4>Housing &amp; Real Estate</h4>
-      <p>Affordability, rent control, urban development, zoning policy, and homeownership.</p>
-    </div>
-    <div class="topic">
-      <div class="icon">T</div>
-      <h4>Tech &amp; Digital Economy</h4>
-      <p>Big Tech monopolies, gig economy, AI's economic impact, and platform markets.</p>
-    </div>
-    <div class="topic">
-      <div class="icon">₿</div>
-      <h4>Crypto &amp; FinTech</h4>
-      <p>Blockchain, decentralized finance, crypto regulation, and digital banking innovation.</p>
-    </div>
-    <div class="topic">
-      <div class="icon">E</div>
-      <h4>Environmental Economics</h4>
-      <p>Carbon taxes, green energy policy, climate costs, ESG investing, and sustainability.</p>
+      <p>Monetary &amp; fiscal policy, growth, inflation, labor markets, and central banking.</p>
     </div>
     <div class="topic">
       <div class="icon">B</div>
       <h4>Behavioral Economics</h4>
-      <p>Cognitive biases, nudge theory, loss aversion, and the psychology of decision-making.</p>
+      <p>Decision-making under uncertainty, market anomalies, and experimental research.</p>
     </div>
     <div class="topic">
-      <div class="icon">⚕</div>
-      <h4>Health Economics</h4>
-      <p>Healthcare costs, insurance markets, mental health spending, and pharmaceutical pricing.</p>
+      <div class="icon">D</div>
+      <h4>Development &amp; Trade</h4>
+      <p>International trade, emerging markets, poverty, inequality, and policy outcomes.</p>
     </div>
     <div class="topic">
-      <div class="icon">A</div>
-      <h4>Education Economics</h4>
-      <p>Returns to education, college affordability, student debt, and the skills gap.</p>
-    </div>
-    <div class="topic">
-      <div class="icon">I</div>
-      <h4>Inequality &amp; Social Issues</h4>
-      <p>Income gaps, racial wealth divide, gender pay gap, social mobility, and poverty.</p>
+      <div class="icon">E</div>
+      <h4>Econometrics &amp; Data</h4>
+      <p>Applied methods, causal inference, time-series analysis, machine learning for econ.</p>
     </div>
   </div>
-</div>
 </section>
 
-<!-- Submit -->
-<section class="form-bg" id="submit">
-<div class="form-bg-inner">
-  <div class="section-title">
-    <h2>Submit your paper</h2>
-    <p>Fill out the form below. You'll receive a confirmation email and our editorial team will get back to you within 3–4 weeks.</p>
+<section id="submit" style="background: var(--paper-2); max-width: none; padding-left: 0; padding-right: 0;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+    <div class="section-title">
+      <h2>Submit your paper</h2>
+      <p>Fill out the form below. You'll receive a confirmation email and our editorial board will get back to you within 4–6 weeks.</p>
+    </div>
+
+    <div class="gform-wrap">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfX5waAruRg5XhbjawDOezTbKa6wWFjezEIEDlwyvRtGJfg3A/viewform?embedded=true"
+        width="760"
+        height="320"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Paper Submission Form"
+      >Loading…</iframe>
+    </div>
   </div>
-
-  <div class="form-wrap">
-    <form
-      action="https://formsubmit.co/paruchuriarjun1@gmail.com"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <!-- FormSubmit config -->
-      <input type="hidden" name="_subject" value="New Paper Submission — Econoscope">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="true">
-      <input type="hidden" name="_autoresponse" value="Thank you for submitting your paper to Econoscope! Our editorial team will review your work and respond within 3–4 weeks. — The Econoscope Team">
-      <input type="hidden" name="_next" value="about:blank">
-
-      <div class="form-grid">
-
-        <div class="field">
-          <label for="fullName">Full Name <span class="req">*</span></label>
-          <input type="text" id="fullName" name="Full Name" required placeholder="e.g. Jane Smith">
-        </div>
-
-        <div class="field">
-          <label for="email">Email <span class="req">*</span></label>
-          <input type="email" id="email" name="Email" required placeholder="jane@school.edu">
-        </div>
-
-        <div class="field">
-          <label for="school">School / Institution <span class="req">*</span></label>
-          <input type="text" id="school" name="School" required placeholder="e.g. Lincoln High School">
-        </div>
-
-        <div class="field">
-          <label for="grade">Grade / Year <span class="req">*</span></label>
-          <select id="grade" name="Grade" required>
-            <option value="">Select your grade…</option>
-            <option>9th Grade (Freshman)</option>
-            <option>10th Grade (Sophomore)</option>
-            <option>11th Grade (Junior)</option>
-            <option>12th Grade (Senior)</option>
-            <option>Recent Graduate (Gap Year)</option>
-          </select>
-        </div>
-
-        <div class="field full">
-          <label for="title">Paper Title <span class="req">*</span></label>
-          <input type="text" id="title" name="Paper Title" required placeholder="e.g. The Impact of Interest Rates on Teen Spending Habits">
-        </div>
-
-        <div class="field">
-          <label for="topic">Primary Topic Area <span class="req">*</span></label>
-          <select id="topic" name="Topic Area" required>
-            <option value="">Select a topic…</option>
-            <option>Personal Finance</option>
-            <option>Macroeconomics</option>
-            <option>Microeconomics</option>
-            <option>Global Trade</option>
-            <option>Housing &amp; Real Estate</option>
-            <option>Tech &amp; Digital Economy</option>
-            <option>Crypto &amp; FinTech</option>
-            <option>Environmental Economics</option>
-            <option>Behavioral Economics</option>
-            <option>Health Economics</option>
-            <option>Education Economics</option>
-            <option>Inequality &amp; Social Issues</option>
-            <option>Other / Interdisciplinary</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="wordcount">Approximate Word Count <span class="req">*</span></label>
-          <select id="wordcount" name="Word Count" required>
-            <option value="">Select range…</option>
-            <option>Under 1,000 words</option>
-            <option>1,000 – 2,500 words</option>
-            <option>2,500 – 5,000 words</option>
-            <option>5,000 – 8,000 words</option>
-            <option>Over 8,000 words</option>
-          </select>
-        </div>
-
-        <div class="field full">
-          <label for="coauthors">Co-authors (if any)</label>
-          <input type="text" id="coauthors" name="Co-authors" placeholder="Name(s) and school(s), comma separated">
-        </div>
-
-        <div class="field full">
-          <label for="abstract">Abstract <span class="req">*</span></label>
-          <textarea id="abstract" name="Abstract" required maxlength="2000" placeholder="A 150–300 word summary describing your research question, methodology, and key findings."></textarea>
-        </div>
-
-        <div class="field full">
-          <label for="keywords">Keywords</label>
-          <input type="text" id="keywords" name="Keywords" placeholder="e.g. inflation, consumer behavior, interest rates">
-        </div>
-
-        <div class="field full">
-          <label>Paper File (PDF or Word) <span class="req">*</span></label>
-          <div class="file-area" id="dropZone">
-            <input type="file" id="paperFile" name="Paper File" accept=".pdf,.doc,.docx" required>
-            <div class="file-icon">📄</div>
-            <div class="file-text"><strong>Click to upload</strong> or drag &amp; drop</div>
-            <div class="file-hint">PDF, DOC, or DOCX · Max 10 MB</div>
-            <div class="file-chosen" id="fileName"></div>
-          </div>
-        </div>
-
-        <div class="field full" style="display:flex;flex-direction:column;gap:12px;">
-          <div class="check-row">
-            <input type="checkbox" id="original" name="Original Work Confirmed" value="Yes" required>
-            <label for="original">I confirm this is my original work, has not been published elsewhere, and I have the right to submit it.</label>
-          </div>
-          <div class="check-row">
-            <input type="checkbox" id="consent" name="Review Consent" value="Yes" required>
-            <label for="consent">I understand my paper will be reviewed by the Econoscope editorial team and consent to receive feedback by email.</label>
-          </div>
-        </div>
-
-      </div><!-- /form-grid -->
-
-      <div class="submit-row">
-        <button type="submit" class="btn btn-primary">Submit Paper →</button>
-      </div>
-      <p class="form-note">You'll receive an automatic confirmation after submitting. Editorial decisions follow in 3–4 weeks.</p>
-    </form>
-  </div>
-</div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
   <div class="section-title">
     <h2>Frequently asked</h2>
-    <p>Quick answers to common questions about submitting to Econoscope.</p>
+    <p>Quick answers to common questions about the submission process.</p>
   </div>
-  <div class="faq-list">
+  <div style="max-width: 760px; margin: 0 auto;">
     <div class="faq-item">
-      <div class="faq-q">Do I need to be an expert in economics to submit?</div>
-      <div class="faq-a">Not at all. Econoscope is built for high school students — all experience levels are welcome. What matters is a genuine question, honest research, and clear writing. Your fresh perspective as a student is exactly what makes your work valuable.</div>
+      <h4>Who can submit?</h4>
+      <p>Any current student — undergraduate or graduate — at any accredited institution. Recent graduates within one year of completion are also welcome.</p>
     </div>
     <div class="faq-item">
-      <div class="faq-q">What length should my paper be?</div>
-      <div class="faq-a">We accept papers from 800 words (short policy briefs or opinion pieces) all the way to 8,000+ words for long-form research. Most successful submissions fall in the 1,500–4,000 word range. Quality matters far more than length.</div>
+      <h4>Is there a submission fee?</h4>
+      <p>No. Submission and editorial review are entirely free.</p>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Does my paper need citations and a bibliography?</div>
-      <div class="faq-a">Yes — any factual claims or data should be cited. We accept any standard format (MLA, APA, Chicago). Papers without citations for factual claims will be asked to revise before full review.</div>
+      <h4>What format should my paper be in?</h4>
+      <p>PDF, ideally typeset in LaTeX or a polished Word export. Most accepted papers are 15–40 pages including references and appendices.</p>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Can I submit a paper I wrote for a class?</div>
-      <div class="faq-a">Yes! Papers written for school assignments are welcome, as long as you are the original author and submitting doesn't violate any agreements with your school or teacher.</div>
+      <h4>Can I submit work co-authored with a faculty advisor?</h4>
+      <p>Yes, provided a student is the first author and the work was student-led. List all co-authors and affiliations in the form.</p>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Can I submit with a co-author?</div>
-      <div class="faq-a">Absolutely. List the primary author in the submission form and include all co-authors and their schools in the co-authors field. The paper can also list them on the title page.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What happens after I submit?</div>
-      <div class="faq-a">You'll receive an automatic confirmation email. The editorial team will review your paper and respond within 3–4 weeks with one of: accept, revise &amp; resubmit, or decline with feedback.</div>
+      <h4>What happens after I submit?</h4>
+      <p>You'll receive an automatic confirmation email. The editorial team will review your paper and respond within 4–6 weeks with one of: accept, revise &amp; resubmit, or decline with feedback.</p>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="foot-inner">
     <div>
-      <a href="#" class="logo">Econo<span>scope</span></a>
-      <p>A student research journal exploring economics &amp; finance — written by high schoolers, for high schoolers.</p>
+      <a href="#" class="logo">The Quill <span>Review</span></a>
+      <p>Student research in finance &amp; economics.</p>
     </div>
     <div>
       <p><strong>Editorial inquiries</strong></p>
-      <p style="margin-top:6px;"><a href="mailto:paruchuriarjun1@gmail.com">paruchuriarjun1@gmail.com</a></p>
+      <p>paruchuriarjun1@gmail.com</p>
     </div>
     <div>
       <p><strong>Quick links</strong></p>
-      <p style="margin-top:6px;"><a href="#submit">Submit a paper</a></p>
-      <p style="margin-top:4px;"><a href="#topics">Browse topics</a></p>
-      <p style="margin-top:4px;"><a href="#faq">FAQ</a></p>
+      <p><a href="#submit" style="color: var(--accent-2); text-decoration: none;">Submit a paper</a></p>
+      <p><a href="#faq" style="color: var(--accent-2); text-decoration: none;">FAQ</a></p>
     </div>
   </div>
-  <div class="copyright">© <span id="year"></span> Econoscope. All submissions remain the intellectual property of their authors.</div>
+  <div class="copyright">© <span id="year"></span> The Quill Review. All submissions remain the intellectual property of their authors.</div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.parentElement;
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
-    });
-  });
-
-  // File upload display
-  const fileInput = document.getElementById('paperFile');
-  const fileNameEl = document.getElementById('fileName');
-  const dropZone = document.getElementById('dropZone');
-
-  fileInput.addEventListener('change', () => {
-    const f = fileInput.files[0];
-    if (!f) return;
-    if (f.size > 10 * 1024 * 1024) {
-      alert('That file is over 10 MB. Please compress it and try again.');
-      fileInput.value = '';
-      return;
-    }
-    fileNameEl.textContent = '📎 ' + f.name + ' (' + (f.size / 1024 / 1024).toFixed(2) + ' MB)';
-    fileNameEl.style.display = 'block';
-  });
-
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
-  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
-  dropZone.addEventListener('drop', e => {
-    e.preventDefault();
-    dropZone.classList.remove('drag');
-    const f = e.dataTransfer?.files[0];
-    if (f) {
-      fileInput.files = e.dataTransfer.files;
-      fileNameEl.textContent = '📎 ' + f.name;
-      fileNameEl.style.display = 'block';
-    }
-  });
 </script>
 
 </body>
